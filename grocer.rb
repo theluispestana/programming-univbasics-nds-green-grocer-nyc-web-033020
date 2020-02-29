@@ -79,7 +79,7 @@ def apply_clearance(cart)
   index = 0
   while index < cart.length do
     item = cart[index]
-    if item[:clearance] 
+    if item[:clearance]
       item[:price] -= (item[:price] * 0.2)
       item[:price].round(2)
     end
@@ -98,4 +98,13 @@ def checkout(cart, coupons)
   #
   # BEFORE it begins the work of calculating the total (or else you might have
   # some irritated customers
+  final_cart = apply_clearance(apply_coupons(consolidate_cart(cart)))
+  grand_total = 0
+  index = 0
+  while index < final_cart.length do
+    item = final_cart[index]
+    grand_total += item[:price] * item[:count]
+    index += 1
+  end
+  grand_total -= grand_total * 0.1 if grand_total > 100
 end
