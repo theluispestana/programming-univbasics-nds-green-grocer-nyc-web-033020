@@ -98,9 +98,6 @@ def checkout(cart, coupons)
   #
   # BEFORE it begins the work of calculating the total (or else you might have
   # some irritated customers
-  # final_cart = consolidate_cart(cart)
-  # final_cart = apply_coupons(final_cart, coupons)
-  # final_cart = apply_clearance(final_cart)
   final_cart = apply_clearance(apply_coupons(consolidate_cart(cart), coupons))
   grand_total = 0
   index = 0
